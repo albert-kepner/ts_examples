@@ -1,0 +1,93 @@
+ChatApp Conversation 9/11/2024 9:10:08
+=======================================
+
+bot: Hello, how can I help?
+
+user: How do I setup a typescript project to test with Jest?
+
+bot: Setting up a TypeScript project to test with Jest involves a few steps. Here's a step-by-step guide to get you started:
+
+### Step 1: Initialize Your Project
+First, create a new directory for your project and initialize a new Node.js project.
+```sh
+mkdir my-typescript-project
+cd my-typescript-project
+npm init -y
+```
+
+### Step 2: Install TypeScript and Jest
+Next, you'll need to install TypeScript, Jest, and some additional packages to make everything work together.
+```sh
+npm install --save-dev typescript jest @types/jest ts-jest
+```
+
+### Step 3: Configure TypeScript
+Create a `tsconfig.json` file in the root of your project. This file tells TypeScript how to compile your code.
+```json
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}
+```
+
+### Step 4: Configure Jest
+Create a `jest.config.js` file in the root of your project. This file will configure Jest to work with TypeScript.
+```js
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)']
+};
+```
+
+### Step 5: Create Source and Test Directories
+Create the source and test directories where you’ll write your code and tests.
+```sh
+mkdir -p src/__tests__
+```
+
+### Step 6: Write a Sample TypeScript File
+Create a sample TypeScript file in the `src` directory. For example, `src/sum.ts`:
+```typescript
+export function sum(a: number, b: number): number {
+  return a + b;
+}
+```
+
+### Step 7: Write a Sample Test File
+Create a test file in the `src/__tests__` directory. For example, `src/__tests__/sum.test.ts`:
+```typescript
+import { sum } from '../sum';
+
+test('adds 1 + 2 to equal 3', () => {
+  expect(sum(1, 2)).toBe(3);
+});
+```
+
+### Step 8: Add Test Script to package.json
+Add a script to your `package.json` file to run your tests with Jest.
+```json
+"scripts": {
+  "test": "jest"
+}
+```
+
+### Step 9: Run Your Tests
+Now you can run your tests by executing:
+```sh
+npm test
+```
+
+If everything is set up correctly, you should see Jest run your test and output the result.
+
+### Summary
+You've now set up a TypeScript project with Jest for testing. You can continue adding more TypeScript files and corresponding test files as needed. This setup ensures that your TypeScript code is correctly type-checked and that your tests are run with Jest.
